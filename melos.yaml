@@ -1,30 +1,41 @@
 name: salesiq_mobilisten
-repository: https://github.com/zoho/salesiq-mobilisten-flutter
+repository: https://github.com/AbdelhamidAhmedJeel/salesiq-mobilisten-flutter
 
 packages:
   - packages/*
+  - example/
 
 commands:
   bootstrap:
-    runPubGet: true # Runs `dart pub get` for all packages
-  test:
-    run: flutter test # Runs tests for all packages
+    usePubspecOverrides: true
+    runPubGet: true
+    
   analyze:
-    run: dart analyze
+    run: |
+      dart analyze .
+      dart format --set-exit-if-changed .
+    description: Run analyzer and check formatting
+
   format:
     run: dart format .
-  publish:
-    run: dart format . && dart pub publish
+    description: Format all code
 
-# Optional: Custom scripts
+  test:
+    run: flutter test
+    description: Run all tests
+    packageFilters:
+      dirExists: test
+
 scripts:
-  clean:
+  clean:all:
     run: melos run clean:flutter && melos run clean:packages
-    description: Clean all packages and the Flutter app
+    description: Clean all build and cache files
+
   clean:flutter:
     run: flutter clean
     packageFilters:
-      dirExists: flutter
+      flutter: true
+
   clean:packages:
     run: dart pub cache clean
     packageFilters:
