@@ -1,5 +1,5 @@
 name: mobilisten_workspace
-repository: https://github.com/zoho/salesiq-mobilisten-flutter
+repository: https://github.com/AbdelhamidAhmedJeel/salesiq-mobilisten-flutter
 
 packages:
   - packages/*

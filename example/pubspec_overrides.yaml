@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: salesiq_mobilisten,salesiq_mobilisten_calls,salesiq_mobilisten_core
+dependency_overrides:
+  salesiq_mobilisten:
+    path: ..\\packages\\mobilisten
+  salesiq_mobilisten_calls:
+    path: ..\\packages\\calls
+  salesiq_mobilisten_core:
+    path: ..\\packages\\core
