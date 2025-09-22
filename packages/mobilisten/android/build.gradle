@@ -4,18 +4,31 @@ version '1.0'
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        // Keep jcenter() for legacy dependencies if needed, but prefer mavenCentral()
+        jcenter() {
+            content {
+                // Only allow specific legacy dependencies from jcenter
+                includeModule("org.jetbrains.trove4j", "trove4j")
+            }
+        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'com.android.tools.build:gradle:8.2.2'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        // Keep jcenter() for legacy dependencies if needed
+        jcenter() {
+            content {
+                includeModule("org.jetbrains.trove4j", "trove4j")
+            }
+        }
     }
 }
 
@@ -24,10 +37,39 @@ apply plugin: 'com.android.library'
 android {
 
     namespace "com.zohosalesiq.plugin"
-    compileSdk 35
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 21
+        
+        // Enable 16KB page size support
+        ndk {
+            // Only include architectures that support 16KB pages
+            abiFilters 'arm64-v8a', 'x86_64'
+        }
+    }
+
+    // Add build features for 16KB page size compatibility
+    buildFeatures {
+        buildConfig true
+    }
+
+    // Packaging options to handle 16KB page alignment
+    packagingOptions {
+        // Ensure native libraries are properly aligned for 16KB pages
+        jniLibs {
+            useLegacyPackaging = false
+        }
+        
+        // Handle potential duplicate files from dependencies
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libjsc.so'
+    }
+
+    // Compile options
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
