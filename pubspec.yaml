@@ -1,12 +1,8 @@
-name: salesiq_mobilisten
+name: mobilisten_workspace
 
 environment:
   sdk: '>=2.15.0 <4.0.0'
 
-# Add these important fields
-version: 1.0.0
-description: Zoho SalesIQ SDK for Flutter
-homepage: https://github.com/AbdelhamidAhmedJeel/salesiq-mobilisten-flutter
 
 false_secrets:
   - example/**
