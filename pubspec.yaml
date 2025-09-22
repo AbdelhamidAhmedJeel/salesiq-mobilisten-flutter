@@ -6,7 +6,7 @@ environment:
 # Add these important fields
 version: 1.0.0
 description: Zoho SalesIQ SDK for Flutter
-homepage: https://github.com/yourusername/salesiq-mobilisten-flutter
+homepage: https://github.com/AbdelhamidAhmedJeel/salesiq-mobilisten-flutter
 
 false_secrets:
   - example/**
