@@ -1,4 +1,4 @@
-name: mobilisten_workspace
+name: salesiq_mobilisten
 
 environment:
   sdk: '>=2.15.0 <4.0.0'
